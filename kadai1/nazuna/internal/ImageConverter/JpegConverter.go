@@ -1,10 +1,10 @@
 package ImageConverter
 
 import (
-	"fmt"
 	"image"
 	"image/jpeg"
 	"os"
+	"path/filepath"
 )
 
 type JpegConverter struct {
@@ -22,7 +22,7 @@ func NewJpegConverter(image image.Image, outDir string, name string) *JpegConver
 }
 
 func (c *JpegConverter) Convert() error {
-	out, err := os.Create(fmt.Sprintf("%s/%s.jpg", c.OutDir, c.FileName))
+	out, err := os.Create(filepath.Join(c.OutDir, c.FileName+".jpg"))
 	if err != nil {
 		return err
 	}

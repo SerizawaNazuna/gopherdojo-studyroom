@@ -5,6 +5,7 @@ import (
 	"image"
 	"image/png"
 	"os"
+	"path/filepath"
 )
 
 type PngConverter struct {
@@ -22,7 +23,7 @@ func NewPngConverter(image image.Image, outDir string, name string) *PngConverte
 }
 
 func (c *PngConverter) Convert() error {
-	out, err := os.Create(fmt.Sprintf("%s/%s.png", c.OutDir, c.FileName))
+	out, err := os.Create(filepath.Join(c.OutDir, c.FileName+".png"))
 	if err != nil {
 		fmt.Println(err.Error())
 		return err
